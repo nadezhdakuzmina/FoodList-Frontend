@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  frontend: 
+    build: .
+    container_name: frontend
+    restart: unless-stopped
+    volumes:
+      - "./src:/app/src"
+    networks:
+      - bridge
+
+  nginx:
+    image: jonasal/nginx-certbot:latest
+    container_name: nginx
+    restart: unless-stopped
+    environment:
+      - CERTBOT_EMAIL=jeembo.finance@gmail.com
+    volumes:
+      - .certbot:/etc/letsencrypt
+      - ./nginx/conf.d:/etc/nginx/user_conf.d
+      - ./nginx/www:/etc/nginx/www/
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge
+ 

@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.menu {
+  height: 100%;
+  width: 300px;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+}
+
+.header {
+  background-color: #1C2755;
+  color: #fff;
+  
+}
