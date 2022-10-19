@@ -5,7 +5,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const isProduction = process.env.MODE === 'production';
+const isProduction = process.env.MODE_ === 'production';
 const isDevServerUsed = process.env.TYPE === 'dev-server';
 
 const common = require('./common');

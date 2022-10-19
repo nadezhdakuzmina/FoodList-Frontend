@@ -7,7 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const basePath = path.resolve(__dirname, './');
 const tsConfigPath = path.resolve(__dirname, '../tsconfig.json');
-const isProduction = process.env.MODE === 'production';
+const isProduction = process.env.MODE_ === 'production';
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
