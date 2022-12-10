@@ -1,0 +1,30 @@
+.root {
+  width: 100%;
+}
+
+.contentWrapper {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 64px;
+
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
+}
+
+.foodList {
+  flex: 1 1 auto;
+  margin-right: 100px;
+
+  @media (max-width: 90px) {
+    margin-right: 50px;
+  }
+}
+
+.additionForm {
+  flex: 0 0 auto;
+  @media (max-width: 500px) {
+    margin-top: 30px;
+  }
+}

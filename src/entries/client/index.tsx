@@ -1,18 +1,18 @@
 import { render, hydrate } from 'react-dom';
-import { createStore } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import { reducer, middleware } from '@store';
 import App from '@app';
 
 import DOMReady from '@utils/DOMReady';
 import { IS_PRODUCTION, PRELOADED_STATE_KEY } from '@constants';
+import { createStore } from '@data/store';
+import { initStore } from '@data/store/initStore';
 
-DOMReady.then(() => {
-  const preloadedState = { ...window[PRELOADED_STATE_KEY] };
+DOMReady.then(async () => {
+  const preloadedState = window[PRELOADED_STATE_KEY] || await initStore();
   delete window[PRELOADED_STATE_KEY];
 
-  const store = createStore(reducer, preloadedState, middleware);
+  const store = createStore(preloadedState);
   const rootElement = document.getElementById('root');
 
   const app = (

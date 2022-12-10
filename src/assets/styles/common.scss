@@ -1,13 +1,13 @@
 body, html, #root {
   height: 100%;
   width: 100%;
-  font-family: Verdana, 'Geneva', Tahoma, sans-serif;
+  font-family: 'Gilroy', Verdana, 'Geneva', Tahoma, sans-serif;
   font-size: 14px;
   color: var(--primaryTextColor);
 }
 
 body {
-  background-color: var(--bgColor);
+  background: linear-gradient(289.08deg, #F9FBFD -24.56%, #D2E0FA -24.55%, #F9FBFD 88.59%);
 }
 
 * {
@@ -29,7 +29,7 @@ ul {
   list-style: none;
 }
 
-body > div {
+div[id="root"] {
   height: 100%;
   width: 100%;
 }

@@ -21,6 +21,10 @@ module.exports = {
     ],
     fallback: {
       path: require.resolve('path-browserify'),
+      stream: require.resolve('stream-browserify'),
+      zlib: require.resolve('browserify-zlib'),
+      https: require.resolve('https-browserify'),
+      http: require.resolve('http-browserify'),
     },
   },
   optimization: {
@@ -47,6 +51,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env.isProduction': isProduction,

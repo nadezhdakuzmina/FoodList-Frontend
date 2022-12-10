@@ -7,7 +7,8 @@ import { Helmet } from 'react-helmet';
 import App from '@app';
 
 import { templator } from './html';
-import { create } from './store';
+import { createStore } from '@data/store';
+import { initStore } from '@data/store/initStore';
 
 import {
   SERVER_PORT,
@@ -24,8 +25,11 @@ expressApp.use('/static', staticRouter);
 expressApp.get(`*`, async (req, res) => {
   await stylesLookup;
 
+  const cookieToken = req.headers.cookie?.match(/user_token=([a-zA-Z0-9]+)/)?.[1];
+  const state = await initStore(cookieToken);
+  const store = createStore(state);
+
   const helmet = Helmet.renderStatic();
-  const store = create({ test: 'test' });
   const appHTML = renderToString(
     <StaticRouter location={req.url}>
       <App store={store} />

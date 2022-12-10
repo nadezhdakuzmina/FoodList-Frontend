@@ -16,15 +16,14 @@
     "paths": {
       "@app": ["./src/app"],
       "@constants": ["./src/constants.ts"],
-      "@types": ["./src/types.ts"],
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
       "@containers/*": ["./src/containers/*"],
       "@pages/*": ["./src/pages/*"],
       "@utils/*": ["./src/utils/*"],
-      "@store": ["./src/store"],
-      "@store/*": ["./src/store/*"],
-      "@server/*": ["./src/server/*"],
+      "@store": ["src/data"],
+      "@data/*": ["src/data/*"],
+      "@server/*": ["src/entries/server/*"],
       "@root/*": ["./src/*"]
     },
   },

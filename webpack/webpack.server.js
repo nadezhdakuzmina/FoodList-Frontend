@@ -1,9 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const isProduction = process.env.MODE === 'production';
 const common = require('./common');
 
 module.exports = merge(common, {
@@ -20,56 +18,15 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.scss$/,
-        exclude: /src\/assets\/styles/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              emit: false,
-            },
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: isProduction ? '[hash:base64]' : '[name]__[local]--[hash:base64:5]',
-              },
-              sourceMap: !isProduction
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: !isProduction
-            }
-          },
-        ]
-      },
-      {
-        test: /\.scss$/,
-        include: /src\/assets\/styles/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              emit: false,
-            },
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: !isProduction
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: !isProduction
-            }
-          },
-        ]
-      },
+        test: /\.s?css$/,
+        use: ['null-loader']
+      }
     ],
   },
+  plugins: [
+    new webpack.NormalModuleReplacementPlugin(
+      /lib\/adapter\/xhr\.js/,
+      './lib/adapter/http.js',
+    ),
+  ]
 });

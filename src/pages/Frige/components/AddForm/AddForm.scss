@@ -1,0 +1,29 @@
+.root {
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    padding-top: 17px;
+  
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  .input,
+  .button {
+    margin-top: 26px;
+  }
+  
+  .input {
+    width: 400px;
+  
+    @media (max-width: 1100px) {
+      width: 300px;
+    }
+  
+    @media (max-width: 500px) {
+      max-width: 300px;
+    }
+  }
+}

@@ -9,3 +9,5 @@ export const STATIC_PATH = `${BASE_PATH}/public`;
 export const INDEX_PATH = `${STATIC_PATH}/index.html`;
 
 export const PRELOADED_STATE_KEY = '__PRELOADED_STATE__';
+
+export const BACKEND_BASE_URL = 'http://localhost:3001';

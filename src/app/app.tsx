@@ -1,19 +1,16 @@
 import { Provider } from 'react-redux';
-import { Routes, Route } from 'react-router';
 import { Helmet } from 'react-helmet';
 
 import Layout from '@containers/Layout';
-import Main from '@pages/Main';
-import Frige from '@pages/Frige';
-import FoodList from '@pages/FoodList';
-
+import Routing from './Routing';
 
 import type { FC } from 'react';
 import type * as T from './types';
 
-import 'antd/dist/antd.min.css';
+import 'antd/dist/antd.css';
 import '@assets/styles/common.scss';
 import '@assets/styles/variables.scss';
+
 const App: FC<T.AppProps> = ({
   store,
 }) => (
@@ -27,11 +24,7 @@ const App: FC<T.AppProps> = ({
     </Helmet>
     <Provider store={store}>
       <Layout>
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/frige" element={<Frige />} />
-          <Route path="/foodList" element={<FoodList />} />
-        </Routes>
+        <Routing />
       </Layout>
     </Provider>
   </>

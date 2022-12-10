@@ -15,7 +15,14 @@
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
   background-color: #1C2755;
   color: #fff;
-  
+  padding: 20px 50px;
+}
+
+.logoutButton {
+  color: #fff;
+  cursor: pointer;
 }

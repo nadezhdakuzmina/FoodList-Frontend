@@ -1,39 +1,72 @@
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { logoutResolver } from '@data/actions/core/resolvers';
 
 import S from './Layout.scss';
 
 import type { FC } from 'react';
+import type { State } from '@data/types';
+import type { LayoutProps } from './types';
 
-const Layout: FC = ({ children }) => {
+const mapStateToProps = (state: State) => ({
+  token: state.core.token,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch(logoutResolver()),
+});
+
+const Layout: FC<LayoutProps> = ({
+  children,
+  token,
+  logout
+}) => {
   return (
     <div className={S.root}>
-      <div className={S.header}>Logo</div>
-      <div className={S.content}>
-        <div className={S.menu}>
-          <Menu
-            style={{
-              width: '100%',
-              height: '100%',
-            }}
-            defaultSelectedKeys={['main']}
-            mode="vertical"
+      {token && (<>
+        <div className={S.header}>
+          <div>
+            FoodList
+          </div>
+          <div
+            className={S.logoutButton}
+            onClick={logout}
           >
-            <Menu.Item key="main">
-              <Link to="/">Main</Link>
-            </Menu.Item>
-            <Menu.Item key="frige">
-              <Link to="/frige">Frige</Link>
-            </Menu.Item>
-            <Menu.Item key="foodList">
-              <Link to="/foodList">FoodList</Link>
-            </Menu.Item>
-          </Menu>
+            Выйти
+          </div>
         </div>
-        {children}
-      </div>
+        <div className={S.content}>
+          <div className={S.menu}>
+            <Menu
+              style={{
+                width: '100%',
+                height: '100%',
+              }}
+              defaultSelectedKeys={['main']}
+              mode="vertical"
+            >
+              <Menu.Item key="frige">
+                <Link to="/">Мой холодильник</Link>
+              </Menu.Item>
+              <Menu.Item key="foodList">
+                <Link to="/food-list">Cписок покупок</Link>
+              </Menu.Item>
+              <Menu.Item key="profile">
+                <Link to="/profile">Профиль</Link>
+              </Menu.Item>
+            </Menu>
+          </div>
+          {children}
+        </div>
+      </>)}
+      {(!token && 
+        <> 
+          {children} 
+        </>)}
     </div>
   );
 };
 
-export default Layout;
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
