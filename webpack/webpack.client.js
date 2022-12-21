@@ -26,7 +26,7 @@ module.exports = merge(common, {
       filename: path.resolve(__dirname, '../dist/public/index.html'),
     }),
     new FaviconsWebpackPlugin({
-      logo: path.resolve(__dirname, '../src/assets/images/favicon.png'),
+      logo: path.resolve(__dirname, '../src/assets/images/favicon.svg'),
       outputPath: path.resolve(__dirname, '../dist/public'),
       prefix: isDevServerUsed ? '/' : '/static/',
       inject: true,

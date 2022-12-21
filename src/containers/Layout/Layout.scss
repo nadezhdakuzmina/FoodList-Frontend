@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.logo {
+  height: 32px;
+}
+
 .menu {
   height: 100%;
   width: 300px;
@@ -16,6 +20,7 @@
 
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background-color: #1C2755;
   color: #fff;

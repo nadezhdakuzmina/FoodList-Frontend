@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import Logo from '@assets/images/logo_black.svg';
 import Container from '@containers/Container';
 import RegistrationForm from './components/RegistrationForm';
 
@@ -10,6 +11,7 @@ import StartText from '@components/StartText';
 const Registration: FC = () => {
   return (
     <Container className={S.root}>
+      <Logo className={S.logo} />
       <div className={S.contentWrapper}>
         <StartText 
           title='Войдите или зарегистрируйтесь!' 

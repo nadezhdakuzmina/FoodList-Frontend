@@ -2,7 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const common = require('./common');
+
+const isProduction = process.env.MODE === 'production';
 
 module.exports = merge(common, {
   entry: {
@@ -19,8 +23,30 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.s?css$/,
-        use: ['null-loader']
-      }
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              emit: false,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: isProduction ? '[hash:base64]' : '[name]__[local]--[hash:base64:5]',
+              },
+              sourceMap: !isProduction
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: !isProduction
+            }
+          },
+        ]
+      },
     ],
   },
   plugins: [

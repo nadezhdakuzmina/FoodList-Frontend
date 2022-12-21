@@ -22,12 +22,16 @@ const mapStateToProps = (state: State) => ({
 });
 
 const Frige: FC<FrigeProps> = ({ foodList, removeFrigeItem }) => {
+  const sortedList = foodList.sort(({ expires: a }, { expires: b }) => {
+    return Number(a) - Number(b);
+  });
+
   return (
     <Container className={S.root}>
       <PageTitle>Мой холодильник</PageTitle>
       <div className={S.contentWrapper}>
         <div className={S.foodList}>
-          {foodList.map((item) => (
+          {sortedList.map((item) => (
             <FoodItem
               key={item.id}
               onRemove={removeFrigeItem}

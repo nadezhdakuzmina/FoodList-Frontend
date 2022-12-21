@@ -1,4 +1,5 @@
-import { fetchItems } from '@data/resourses/frige/fetchItems';
+import { fetchItems as fetchFrigeItems} from '@data/resourses/frige/fetchItems';
+import { fetchItems as fetchFoodListItems} from '@data/resourses/foodList/fetchItems';
 
 import type { CoreState } from '@data/reducers/core';
 import type { State } from '../types';
@@ -19,8 +20,10 @@ export const initStore = async (token?: string): Promise<State> => {
 
   const [
     frigeItems,
+    foodListItems,
   ] = token ? await Promise.all([
-    fetchItems(token).catch(makeErrorHandler(reqId))
+    fetchFrigeItems(token).catch(makeErrorHandler(reqId)),
+    fetchFoodListItems(token).catch(makeErrorHandler(reqId)),
   ]) : [];
 
   return {
@@ -28,5 +31,8 @@ export const initStore = async (token?: string): Promise<State> => {
     frige: {
       items: frigeItems || [],
     },
+    foodList: {
+      items: foodListItems || [],
+    }
   };
 };

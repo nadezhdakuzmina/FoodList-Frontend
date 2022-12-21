@@ -2,6 +2,8 @@ import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Logo from '@assets/images/logo.svg';
+
 import { logoutResolver } from '@data/actions/core/resolvers';
 
 import S from './Layout.scss';
@@ -27,9 +29,7 @@ const Layout: FC<LayoutProps> = ({
     <div className={S.root}>
       {token && (<>
         <div className={S.header}>
-          <div>
-            FoodList
-          </div>
+          <Logo className={S.logo} />
           <div
             className={S.logoutButton}
             onClick={logout}
@@ -52,9 +52,6 @@ const Layout: FC<LayoutProps> = ({
               </Menu.Item>
               <Menu.Item key="foodList">
                 <Link to="/food-list">Cписок покупок</Link>
-              </Menu.Item>
-              <Menu.Item key="profile">
-                <Link to="/profile">Профиль</Link>
               </Menu.Item>
             </Menu>
           </div>

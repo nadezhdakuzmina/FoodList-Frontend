@@ -5,11 +5,13 @@ import LoginForm from './components/LoginForm';
 
 import S from './Login.scss';
 
+import Logo from '@assets/images/logo_black.svg';
 import StartText from '@components/StartText';
 
 const Login: FC = () => {
   return (
     <Container className={S.root}>
+      <Logo className={S.logo} />
       <div className={S.contentWrapper}>
         <StartText 
           title='Войдите или зарегистрируйтесь!' 

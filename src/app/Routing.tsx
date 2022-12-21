@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Navigate } from 'react-router';
 
 import Frige from '@pages/Frige';
 import Registration from '@pages/Registration';
@@ -8,6 +8,7 @@ import Login from '@pages/Login';
 import type { FC } from 'react';
 import type { RoutingProps } from './types';
 import type { State } from '@data/types';
+import FoodList from '@pages/FoodList';
 
 const mapStateToProps = (state: State) => ({
   token: state.core.token,
@@ -18,8 +19,8 @@ const Routing: FC<RoutingProps> = ({ token }) => {
     return (
       <Routes>
         <Route path="/" element={<Frige />} />
-        <Route path="/profile" element={<>профиль</>} />
-        <Route path="/food-list" element={<>список покупок</>} />
+        <Route path="/food-list" element={<FoodList />} />
+        <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     );
   }
@@ -28,6 +29,7 @@ const Routing: FC<RoutingProps> = ({ token }) => {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/registration" element={<Registration />} />
+      <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
