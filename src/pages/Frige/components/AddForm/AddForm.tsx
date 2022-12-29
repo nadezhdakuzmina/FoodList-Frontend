@@ -10,12 +10,19 @@ import S from './AddForm.scss';
 import type { FC } from 'react';
 import type { FrigeItem } from '@data/reducers/frige';
 import type { AddFormProps } from './types';
+import { getCategories } from '@pages/Frige/utils';
+import { State } from '@data/types';
+import SearchInput from '@components/SearchInput';
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item: Omit<FrigeItem, 'id'>) => dispatch(addItemResolver(item)),
 });
 
-const AddForm: FC<AddFormProps> = ({ addItem }) => {
+const mapStateToProps = (state: State) => ({
+  categories: getCategories(state.frige.items),
+});
+
+const AddForm: FC<AddFormProps> = ({ addItem, categories }) => {
   const [name, setName] = useState<string>();
   const [foodType, setFoodType] = useState<string>();
   const [date, setDate] = useState<moment.Moment>();
@@ -23,10 +30,6 @@ const AddForm: FC<AddFormProps> = ({ addItem }) => {
 
   const onSetName = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
-  }, []);
-
-  const onSetFoodType = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setFoodType(event.target.value);
   }, []);
 
   const nameInputStatus = !name && hasSent ? 'error' : undefined;
@@ -61,17 +64,18 @@ const AddForm: FC<AddFormProps> = ({ addItem }) => {
         status={nameInputStatus}
         value={name}
         className={S.input}
-        placeholder="Введите наименование товара"
+        placeholder="Введите наименование продукта"
         onChange={onSetName}
         size="large"
         allowClear
       />
-      <Input
+      <SearchInput
+        items={categories}
         status={foodTypeInputStatus}
         value={foodType}
         className={S.input}
-        placeholder="Введите категрию товара"
-        onChange={onSetFoodType}
+        placeholder="Введите категрию"
+        onChange={setFoodType}
         size="large"
         allowClear
       />
@@ -95,4 +99,4 @@ const AddForm: FC<AddFormProps> = ({ addItem }) => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(AddForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm);

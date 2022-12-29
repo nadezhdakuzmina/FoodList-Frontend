@@ -29,7 +29,6 @@ export const authUserResolver = (user: User) => {
 export const updateStore = (token: string) => {
   return async (dispatch: ThunkActionDispatch<any>) => {
     const { frige, foodList } = await initStore(token);
-    console.log(frige, foodList);
     dispatch(updateFrigeItemsAction(frige.items));
     dispatch(updateFoodListItemsAction(foodList.items));
     dispatch(setTokenAction(token));

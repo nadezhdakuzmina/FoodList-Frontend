@@ -57,7 +57,7 @@ const LoginForm: FC<RegistrationFormProps> = ({ auth }) => {
         size="large"
         allowClear
       />
-      <Input
+      <Input.Password
         status={passwordStatus}
         value={password}
         className={S.input}

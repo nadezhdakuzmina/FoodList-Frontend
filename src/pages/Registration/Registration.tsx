@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import Logo from '@assets/images/logo_black.svg';
+import Logo from '@assets/images/logo.svg';
 import Container from '@containers/Container';
 import RegistrationForm from './components/RegistrationForm';
 
@@ -15,7 +15,7 @@ const Registration: FC = () => {
       <div className={S.contentWrapper}>
         <StartText 
           title='Войдите или зарегистрируйтесь!' 
-          text='Чтобы составлять удобный список покупок и отслеживать качество продуктов в вашем холодильнике'
+          text='Чтобы составлять удобный список покупок и отслеживать качество ваших лекарств и косметики'
         />
         <div className={S.additionForm}>
           <RegistrationForm />

@@ -28,16 +28,16 @@ const Frige: FC<FrigeProps> = ({ foodList, removeFrigeItem }) => {
 
   return (
     <Container className={S.root}>
-      <PageTitle>Мой холодильник</PageTitle>
+      <PageTitle>Моя аптечка</PageTitle>
       <div className={S.contentWrapper}>
         <div className={S.foodList}>
-          {sortedList.map((item) => (
+          {sortedList.length? sortedList.map((item) => (
             <FoodItem
               key={item.id}
               onRemove={removeFrigeItem}
               {...item}
             />
-          ))}
+          )): <span> Список пуст </span>}
         </div>
         <div className={S.additionForm}>
           <AddForm />

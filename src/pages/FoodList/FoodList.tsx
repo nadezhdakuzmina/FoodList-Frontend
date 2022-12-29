@@ -32,14 +32,14 @@ const FoodList: FC<FoodListItemProps> = ({ foodList, checkFoodListItem, removeFo
       <PageTitle>Список покупок</PageTitle>
       <div className={S.contentWrapper}>
         <div className={S.foodList}>
-          {sortedList.map((item) => (
+          {sortedList.length? sortedList.map((item) => (
             <FoodListItem
               key={item.id}
               onCheck={checkFoodListItem}
               onRemove={removeFoodListItem}
               {...item}
             />
-          ))}
+          )): <span> Список пуст </span>}
         </div>
         <div className={S.additionForm}>
           <AddForm />

@@ -16,8 +16,6 @@ const FoodItem: FC<FoodItemProps> = ({
   expires,
   onRemove,
 }) => {
-  console.log({ id, name, foodType, expires, onRemove });
-
   const onClick = useCallback(() => onRemove(id), [id]);
   const color = useMemo(() => getColor(foodType), [foodType]);
 

@@ -1,0 +1,26 @@
+.root {
+  position: relative;
+}
+
+.list {
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  z-index: 1;
+  background-color: #FFF;
+  border: 1px solid #d9d9d9;
+}
+
+.listItem {
+  padding: 8px 10px;
+  cursor: pointer;
+  transition-duration: .2s;
+
+  + .listItem {
+    border-top: 1px solid #d9d9d9;
+  }
+
+  &:hover {
+    background-color: rgba(24, 144, 255, 0.2);
+  }
+}

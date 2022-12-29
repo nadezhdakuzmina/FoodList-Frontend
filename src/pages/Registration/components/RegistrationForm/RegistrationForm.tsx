@@ -72,7 +72,7 @@ const RegistrationForm: FC<RegistrationFormProps> = ({ createUser }) => {
         size="large"
         allowClear
       />
-      <Input
+      <Input.Password
         status={passwordStatus}
         value={password}
         className={S.input}

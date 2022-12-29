@@ -10,8 +10,22 @@ export const getExpiresText = (timestamp: number) => {
 
   if (daysLast > 365) {
     return {
-      text: `Не истечет никогда`,
-      status: ExpirationStatus.Infinity,
+      text: `Истечет не скоро`,
+      status: ExpirationStatus.NotExpired,
+    };
+  }
+
+  if (daysLast > 62) {
+    return {
+      text: `Несколько месяцев`,
+      status: ExpirationStatus.NotExpired,
+    };
+  }
+
+  if (daysLast > 31) {
+    return {
+      text: `Больше месяца`,
+      status: ExpirationStatus.NotExpired,
     };
   }
 
